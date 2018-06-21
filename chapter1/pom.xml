@@ -88,6 +88,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -147,7 +148,7 @@
                 <version>2.2</version>
                 <configuration>
                     <!-- 通过maven tomcat7:run运行项目时，访问项目的端口号 -->
-                    <port>8080</port>
+                    <port>8081</port>
                     <!-- 项目访问路径  本例：localhost:9090,  如果配置的aa， 则访问路径为localhost:9090/aa-->
                     <path>/</path>
                     <uriEncoding>UTF-8</uriEncoding>

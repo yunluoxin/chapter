@@ -21,12 +21,12 @@ public class UserController {
 	@Autowired
 	private UserService userService ;
 
-	@RequestMapping("/login.html")
+	@RequestMapping(value = "/login.html")
 	public String loginPage(){
 		return "login" ;
 	}
 
-	@RequestMapping("/loginCheck.html")
+	@RequestMapping(value = "/loginCheck.html")
 	public ModelAndView loginCheck(HttpServletRequest request, LoginCommand loginCommand){
 		boolean isVaildUser = this.userService.hasMatchUser(loginCommand.getUserName(), loginCommand.getPassword()) ;
 		if (!isVaildUser){

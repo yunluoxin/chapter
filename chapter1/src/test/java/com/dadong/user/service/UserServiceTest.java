@@ -12,7 +12,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by dadong on 2018/6/21.
  */
-@ContextConfiguration(locations = {"/applicationContext.xml"})
+@ContextConfiguration(locations = {"/spring/applicationContext.xml"})
 public class UserServiceTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private UserService userService ;

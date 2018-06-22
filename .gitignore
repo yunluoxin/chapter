@@ -1,4 +1,4 @@
 target/
 *.iml
 .idea/
-.DG_Store
+.DS_Store

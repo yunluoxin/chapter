@@ -7,6 +7,17 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
+
+    <context-param>
+        <param-name>log4jconfigLocation</param-name>
+        <param-value>classpath:log4j.properties</param-value>
+    </context-param>
+
+    <!--启动Log4j日志打印，必须在Spring容器启动之前-->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
     <!--负责启动Spring容器的监听器，它将引用上面配置的，获取Spring配置文件地址-->
     <listener>
         <listener-class>

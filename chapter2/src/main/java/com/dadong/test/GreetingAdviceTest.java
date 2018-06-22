@@ -1,5 +1,6 @@
-package com.dadong.aop;
+package com.dadong.test;
 
+import com.dadong.advice.GreetingBeforeAdvice;
 import com.dadong.model.NaiveWaiter;
 import com.dadong.model.Waiter;
 

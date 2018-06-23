@@ -15,19 +15,17 @@ import java.sql.SQLException;
  */
 @Repository
 public class UserDao {
-	static {
-		System.out.print("static");
-	}
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate ;
 
 	public int getMatchCount(String userName, String password){
-		String sql = "select count(*) from t_user where user_name = ? and password = ?" ;
+		final String sql = "select count(*) from t_user where user_name = ? and password = ?" ;
 		return jdbcTemplate.queryForInt(sql,userName, password) ;
 	}
 
 	public User findUserByUserName(final String userName){
-		String sql = "select * from t_user where user_name = ? " ;
+		final String sql = "select * from t_user where user_name = ? " ;
 		final User user = new User() ;
 		jdbcTemplate.query(sql, new Object[]{userName}, new RowCallbackHandler() {
 			public void processRow(ResultSet resultSet) throws SQLException {
@@ -41,7 +39,7 @@ public class UserDao {
 	}
 
 	public void updateLoginInfo(User user){
-		String sql = "update t_user set last_visit = ? ,last_ip = ? where user_id = ? " ;
+		final String sql = "update t_user set last_visit = ? ,last_ip = ? where user_id = ? " ;
 		jdbcTemplate.update(sql, new Object[]{user.getLastVisit(), user.getLastIp(), user.getUserId()}) ;
 	}
 }

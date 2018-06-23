@@ -45,4 +45,14 @@ public class LoginLog {
 	public void setLoginDate(Date loginDate) {
 		this.loginDate = loginDate;
 	}
+
+	@Override
+	public String toString() {
+		return "LoginLog{" +
+				"loginLogId=" + loginLogId +
+				", userId=" + userId +
+				", ip='" + ip + '\'' +
+				", loginDate=" + loginDate +
+				'}';
+	}
 }

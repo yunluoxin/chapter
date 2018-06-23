@@ -1,6 +1,8 @@
 package com.dadong.user.web;
 
+import com.dadong.aop.NeedLogin;
 import com.dadong.user.domain.User;
+import com.dadong.user.service.LoginLogService;
 import com.dadong.user.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 	@Autowired
 	private UserService userService ;
+
+	@Autowired
+	private LoginLogService loginLogService ;
 
 	@RequestMapping(value = "/login.html")
 	public String loginPage(){
@@ -39,5 +45,13 @@ public class UserController {
 			request.getSession().setAttribute("user",user);
 			return new ModelAndView("main") ;
 		}
+	}
+
+	@RequestMapping(value = "/logs.html")
+	@NeedLogin
+	public Object logs(HttpServletRequest request){
+		User user = (User)request.getSession().getAttribute("user") ;
+		List list = this.loginLogService.fetchAllLogs(user.getUserId()) ;
+		return list ;
 	}
 }

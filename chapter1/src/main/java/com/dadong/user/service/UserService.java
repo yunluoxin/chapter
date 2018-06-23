@@ -1,8 +1,6 @@
 package com.dadong.user.service;
 
-import com.dadong.user.dao.LoginLogDao;
 import com.dadong.user.dao.UserDao;
-import com.dadong.user.domain.LoginLog;
 import com.dadong.user.domain.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ public class UserService {
 	private UserDao userDao ;
 
 	@Autowired
-	private LoginLogDao loginLogDao ;
+	private LoginLogService loginLogService ;
 
 	public Boolean hasMatchUser(String userName, String password){
 		int count = this.userDao.getMatchCount(userName, password) ;
@@ -30,10 +28,10 @@ public class UserService {
 
 	public void loginSuccess(User user){
 		this.userDao.updateLoginInfo(user);
-		LoginLog loginLog = new LoginLog() ;
-		loginLog.setUserId(user.getUserId());
-		loginLog.setLoginDate(user.getLastVisit());
-		loginLog.setIp(user.getLastIp());
-		this.loginLogDao.insertLoginLog(loginLog);
+//		LoginLog loginLog = new LoginLog() ;
+//		loginLog.setUserId(user.getUserId());
+//		loginLog.setLoginDate(user.getLastVisit());
+//		loginLog.setIp(user.getLastIp());
+//		this.loginLogService.insert(loginLog);
 	}
 }

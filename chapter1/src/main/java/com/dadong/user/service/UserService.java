@@ -1,6 +1,6 @@
 package com.dadong.user.service;
 
-import com.dadong.user.dao.UserDao;
+import com.dadong.user.dao.impl.UserDao;
 import com.dadong.user.domain.User;
 
 import org.springframework.beans.factory.annotation.Autowired;

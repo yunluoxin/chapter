@@ -1,4 +1,4 @@
-package com.dadong.user.dao;
+package com.dadong.user.dao.impl;
 
 import com.dadong.user.domain.LoginLog;
 

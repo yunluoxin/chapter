@@ -1,6 +1,6 @@
 package com.dadong.aop.web;
 
-import com.dadong.user.dao.LoginLogDao;
+import com.dadong.user.dao.impl.LoginLogDao;
 import com.dadong.user.domain.LoginLog;
 import com.dadong.user.domain.User;
 

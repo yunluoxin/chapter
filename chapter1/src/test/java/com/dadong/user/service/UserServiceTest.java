@@ -3,8 +3,6 @@ package com.dadong.user.service;
 import com.dadong.user.domain.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
@@ -12,8 +10,8 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by dadong on 2018/6/21.
  */
-@ContextConfiguration(locations = {"/spring/applicationContext.xml"})
-public class UserServiceTest extends AbstractTestNGSpringContextTests {
+
+public class UserServiceTest extends BaseTestService {
 	@Autowired
 	private UserService userService ;
 

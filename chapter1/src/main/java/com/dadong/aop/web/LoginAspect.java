@@ -1,4 +1,4 @@
-package com.dadong.aop;
+package com.dadong.aop.web;
 
 import com.dadong.user.domain.User;
 

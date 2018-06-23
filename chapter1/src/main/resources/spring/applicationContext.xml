@@ -19,9 +19,7 @@
     <!--扫描service包-->
     <context:component-scan base-package="com.dadong.*.service"/>
 
-    <context:component-scan base-package="com.dadong.aop"/>
-    <!--自动发现切面并且自动代理,对目标织入增强-->
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
 
     <context:property-placeholder location="classpath:jdbc.properties" />
     <!--定义一个使用DBCP实现的数据源-->
@@ -39,6 +37,28 @@
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
+
+
+    <!--使用Hibernate-->
+    <!--配置sessionFactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" p:dataSource-ref="dataSource">
+        <property name="packagesToScan" value="com.dadong.*.domain"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialet">org.hibernate.dialet.MySQLDialet</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <!--<prop name="hbm2ddl.auto">update</prop>-->
+            </props>
+        </property>
+    </bean>
+    <!--配置hibernate模板-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate" p:sessionFactory-ref="sessionFactory"/>
+
+
+
+
+
+
 
     <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"

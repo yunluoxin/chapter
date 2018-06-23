@@ -9,11 +9,10 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd
 ">
+    <context:component-scan base-package="com.dadong.aop.web"/>
+    <!--自动发现切面并且自动代理,对目标织入增强-->
     <!--fuck!!!!!这里必须写，不然controller的无法代理到！估计是父子容易原因-->
     <aop:aspectj-autoproxy />
-
-    <!-- 启用spring mvc 注解 -->
-    <!--<context:annotation-config />-->
 
     <!--开启扫描controller的beans-->
     <context:component-scan base-package="com.dadong.*.web"/>

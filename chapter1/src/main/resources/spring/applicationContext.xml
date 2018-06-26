@@ -47,7 +47,7 @@
             <props>
                 <prop key="hibernate.dialet">org.hibernate.dialet.MySQLDialet</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <!--<prop name="hbm2ddl.auto">update</prop>-->
+                <prop key="hibernate.generate_statistics">true</prop>
             </props>
         </property>
     </bean>

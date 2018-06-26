@@ -4,16 +4,22 @@ import com.dadong.aop.NeedLogin;
 import com.dadong.user.domain.User;
 import com.dadong.user.service.LoginLogService;
 import com.dadong.user.service.UserService;
+import com.dadong.user.vo.LoginCommand;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * Created by dadong on 2018/6/21.
@@ -33,7 +39,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/loginCheck.html")
-	public ModelAndView loginCheck(HttpServletRequest request, LoginCommand loginCommand){
+	public ModelAndView loginCheck(HttpServletRequest request, @Valid LoginCommand loginCommand, BindingResult bindingResult){
+//		System.out.println(bindingResult.getFieldError().getDefaultMessage()); // 可以用来直接输出第一个错误!
+		for (FieldError error : bindingResult.getFieldErrors()){
+			System.out.println(error.getDefaultMessage());
+		}
 		boolean isVaildUser = this.userService.hasMatchUser(loginCommand.getUserName(), loginCommand.getPassword()) ;
 		if (!isVaildUser){
 			return new ModelAndView("login", "error","用户名或者密码错误") ;
@@ -49,8 +59,9 @@ public class UserController {
 
 	@RequestMapping(value = "/logs.html")
 	@NeedLogin
-	public Object logs(HttpServletRequest request){
-		User user = (User)request.getSession().getAttribute("user") ;
+	@ResponseBody
+	public Object logs(HttpSession session){
+		User user = (User)session.getAttribute("user") ;
 		List list = this.loginLogService.fetchAllLogs(user.getUserId()) ;
 		return list ;
 	}

@@ -9,39 +9,44 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
     <context:component-scan base-package="com.dadong.aop.web"/>
     <!--自动发现切面并且自动代理,对目标织入增强-->
     <!--fuck!!!!!这里必须写，不然controller的无法代理到！估计是父子容易原因-->
     <aop:aspectj-autoproxy />
 
     <!--开启扫描controller的beans-->
-    <context:component-scan base-package="com.dadong.*.web"/>
+    <context:component-scan base-package="com.dadong.*.controller"/>
 
     <!-- 默认的注解映射的支持 -->
     <mvc:annotation-driven>
         <!--设置json转化支持-->
-        <!--<mvc:message-converters>-->
-            <!--<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
-                <!--<property name="objectMapper">-->
-                    <!--<bean class="org.codehaus.jackson.map.ObjectMapper">-->
-                        <!--<property name="dateFormat">-->
-                            <!--<bean class="java.text.SimpleDateFormat">-->
-                                <!--<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>-->
-                            <!--</bean>-->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.codehaus.jackson.map.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                            </bean>
+                        </property>
+                        <!--去除掉null的属性-->
+                        <!--<property name="serializationInclusion">-->
+                            <!--<value type="org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion">NON_NULL</value>-->
                         <!--</property>-->
-                    <!--</bean>-->
-                <!--</property>-->
-                <!--<property name="supportedMediaTypes">-->
-                    <!--<list>-->
-                        <!--<value>application/json</value>-->
-                        <!--<value>text/json</value>-->
-                        <!--<value>application/octet-stream</value>-->
-                        <!--<value>text/plain;charset=ISO-8859-1</value>-->
-                        <!--<value>application/x-www-form-urlencoded;charset=UTF-8</value>-->
-                    <!--</list>-->
-                <!--</property>-->
-            <!--</bean>-->
-        <!--</mvc:message-converters>-->
+                    </bean>
+                </property>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                        <value>text/json</value>
+                        <value>application/octet-stream</value>
+                        <value>text/plain;charset=ISO-8859-1</value>
+                        <value>application/x-www-form-urlencoded;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
     </mvc:annotation-driven>
 
     <!--配置视图解析器，将ModelAndView及字符串解析为具体的页面-->

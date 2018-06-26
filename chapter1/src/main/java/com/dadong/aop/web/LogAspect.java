@@ -1,8 +1,9 @@
 package com.dadong.aop.web;
 
-import com.dadong.user.dao.impl.LoginLogDao;
+import com.dadong.common.util.ServletUtils;
 import com.dadong.user.domain.LoginLog;
 import com.dadong.user.domain.User;
+import com.dadong.user.service.LoginLogService;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -13,9 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 /**
  * Created by dadong on 2018/6/23.
  */
@@ -23,23 +21,19 @@ import javax.servlet.http.HttpSession;
 @Aspect
 public class LogAspect {
 	@Autowired
-	private LoginLogDao loginLogDao ;
-	@Autowired
-	private HttpSession session ;
-	@Autowired
-	private HttpServletRequest request ;
+	private LoginLogService loginLogService ;
 
-	@AfterReturning(value = "execution(* com.dadong.user.web..*.loginCheck(..))", returning = "mv")
+	@AfterReturning(value = "execution(* com.dadong.user.controller..*.loginCheck(..))", returning = "mv")
 	public void log(JoinPoint joinPoint, ModelAndView mv){
 		if (mv.getModel().get("error") == null){
 			// 登录成功
 			System.out.println("------------log---------------") ;
-			User user = (User)session.getAttribute("user") ;
+			User user = (User) ServletUtils.getSession().getAttribute("user") ;
 			LoginLog loginLog = new LoginLog() ;
 			loginLog.setUserId(user.getUserId()) ;
 			loginLog.setLoginDate(new Date());
-			loginLog.setIp(request.getRemoteAddr());
-			this.loginLogDao.insertLoginLog(loginLog) ;
+			loginLog.setIp(ServletUtils.getRequest().getRemoteAddr());
+			this.loginLogService.insert(loginLog) ;
 		}
 	}
 }

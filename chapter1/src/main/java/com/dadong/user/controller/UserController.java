@@ -1,4 +1,4 @@
-package com.dadong.user.web;
+package com.dadong.user.controller;
 
 import com.dadong.aop.NeedLogin;
 import com.dadong.user.domain.User;

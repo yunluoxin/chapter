@@ -32,6 +32,12 @@ public class LoginLogDao {
 		jdbcTemplate.update(sql, args) ;
 	}
 
+	public void updateLoginLog(LoginLog loginLog){
+		final String sql = "update t_login_log SET ip = '127.0.0.1' WHERE user_id = ?";
+		Object[] args = {loginLog.getUserId()} ;
+		jdbcTemplate.update(sql, args) ;
+	}
+
 	public List<LoginLog> selectLogsByUserId(final Integer userId) {
 		final String sql = "select * from t_login_log where user_id = :userId" ;
 		final List<LoginLog> list = new ArrayList<LoginLog>() ;

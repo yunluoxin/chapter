@@ -8,6 +8,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Component
 @Aspect
+@Order(3)
 public class LoginAspect {
 
 	@Around("@annotation(com.dadong.aop.NeedLogin)")
@@ -28,7 +30,7 @@ public class LoginAspect {
 			if (signature.getMethod().getAnnotation(ResponseBody.class) != null || pjd.getTarget().getClass().getAnnotation(ResponseBody.class) != null){
 				ApiResponse response = new ApiResponse() ;
 				response.setSuccess(false);
-				response.setErrorCode(10000);
+				response.setErrorCode("error.need_login");
 				response.setErrorMsg("您需要登录后才能访问哦！");
 				return response ;
 			}

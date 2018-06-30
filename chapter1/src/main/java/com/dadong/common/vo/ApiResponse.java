@@ -10,7 +10,7 @@ public class ApiResponse implements Serializable{
 
 	private boolean success = true ;
 
-	private Integer errorCode ;
+	private String errorCode ;
 
 	private Object data ;
 
@@ -24,11 +24,11 @@ public class ApiResponse implements Serializable{
 		this.success = success;
 	}
 
-	public Integer getErrorCode() {
+	public String getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(Integer errorCode) {
+	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
 	}
 

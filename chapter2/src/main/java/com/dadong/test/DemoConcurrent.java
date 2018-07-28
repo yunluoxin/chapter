@@ -11,7 +11,7 @@ import java.util.concurrent.RecursiveTask;
 
 /**
  * Created by dadong on 2018/7/28.
- * 类似分治的思维，把大任务分解成小任务
+ * 类似分治的思维，把大任务分解成
  */
 class Calculator extends RecursiveTask<Long>{
 

@@ -1,6 +1,7 @@
 package com.dadong.user.controller;
 
 import com.dadong.aop.NeedLogin;
+import com.dadong.common.util.ContextUtils;
 import com.dadong.user.domain.User;
 import com.dadong.user.service.LoginLogService;
 import com.dadong.user.service.UserService;
@@ -13,11 +14,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;

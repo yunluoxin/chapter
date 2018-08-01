@@ -40,7 +40,7 @@ public class MyCallable implements Callable<Integer> {
 
 
 //		for (int i = 0 ; i <= 100; i++){
-//			executorService.execute(new MyCallable(i)) ;  // Callable接口不是集成于Runable
+//			executorService.execute(new MyCallable(i)) ;  // Callable接口不是继承于Runable
 //		}
 	}
 }

@@ -115,11 +115,9 @@ class Storage2 {
 					break ;
 				}
 			}
-
 			list.remove(list.size() - 1) ;
 			System.out.println("consumer:" + consumer + "消费了一个产品，剩余存储量为" + list.size());
 			list.notifyAll();    // 经测试，发现必须置为notifyAll ,否则可能出现。 某个线程调用唤醒notify后，只是唤醒了另外一个，也不符合条件的！继续是wait状态。就进入都在待唤醒状态了
-
 		}
 	}
 }

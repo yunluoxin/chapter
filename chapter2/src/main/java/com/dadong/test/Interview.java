@@ -47,10 +47,30 @@ public class Interview {
 		String s1 = "Programming";
 		String s2 = new String("Programming");
 		String s3 = "Program" + "ming";
-		System.out.println(s1 == s2);
-		System.out.println(s1 == s3);
-		System.out.println(s1 == s1.intern());
+		System.out.println(s1 == s2); //false
+		System.out.println(s1 == s3); //true
+		System.out.println(s1 == s1.intern()); //true
 
+		System.out.println("----------");
+
+		String b = "abc" ;
+		String a = new String(b) ;
+		String c = new String(b) ;
+		System.out.println(a==c); //false
+		System.out.println(a==b);
+		String d = new String(c) ; //false
+		System.out.println(d==c); //false
+		String e = "abc" ;
+		System.out.println(b==e); //true
+
+		System.out.println("-----integer-----");
+		Integer i1 = 5 ;
+		Integer j1 = Integer.valueOf(i1) ;
+		System.out.println(i1 == j1); //true
+
+		Integer i2 = 421 ;
+		Integer j2 = Integer.valueOf(i2) ;
+		System.out.println(i2 == j2);  //false
 	}
 
 //	@Override

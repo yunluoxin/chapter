@@ -23,6 +23,7 @@ public class ObserverModeDemo {
 	}
 
 	static class BroadCast implements Observer {
+
 		private List<Subject> subjects = new ArrayList<Subject>() ;
 
 		private String name ;
@@ -69,17 +70,17 @@ public class ObserverModeDemo {
 
 
 	public static void main(String args[]){
-		BroadCast broadCast = new BroadCast("publisher") ;
+		Observer broadCast = new BroadCast("publisher") ;
 
-		Consumer consumer1 = new Consumer("consumer1") ;
-		Consumer consumer2 = new Consumer("consumer2") ;
+		Subject consumer1 = new Consumer("consumer1") ;
+		Subject consumer2 = new Consumer("consumer2") ;
 
 		broadCast.addObserver(consumer1) ;
 		broadCast.addObserver(consumer2) ;
 
 		broadCast.notifyAllObservers() ;
 
-		Consumer consumer3 = new Consumer("consumer3") ;
+		Subject consumer3 = new Consumer("consumer3") ;
 		broadCast.addObserver(consumer3) ;
 		broadCast.notifyAllObservers() ;
 

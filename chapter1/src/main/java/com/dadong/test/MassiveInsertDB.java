@@ -288,6 +288,7 @@ public class MassiveInsertDB {
 
 	/**
 	 * 批量插入的方法
+	 * 耗时: 823883毫秒
 	 */
 	public static void batchInsert(){
 		// 实际执行的代码

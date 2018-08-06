@@ -1,6 +1,12 @@
 package com.dadong.test;
 
+import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by dadong on 2018/7/25.
@@ -71,6 +77,43 @@ public class Interview {
 		Integer i2 = 421 ;
 		Integer j2 = Integer.valueOf(i2) ;
 		System.out.println(i2 == j2);  //false
+
+
+		long t1 = Calendar.getInstance().getTimeInMillis() ;
+		long t2 = System.currentTimeMillis() ;
+		long t3 = Clock.systemDefaultZone().millis() ;
+		System.out.println(t1 + "," + t2 + "," + t3);
+
+
+		LocalDateTime localDateTime = LocalDateTime.now() ;
+		System.out.println(localDateTime.getYear());
+		System.out.println(localDateTime.getMonthValue());
+		System.out.println(localDateTime.getDayOfMonth());
+		System.out.println(localDateTime.getHour());
+		System.out.println(localDateTime.getMinute());
+		System.out.println(localDateTime.getSecond());
+
+		LocalDateTime now = localDateTime.now() ;
+		LocalDateTime yesterday = now.minusDays(1) ;
+		System.out.println("yesterday is " + yesterday);
+
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss") ;
+		String formatedTimeString = dateTimeFormatter.format(localDateTime) ;
+		System.out.println(formatedTimeString);
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss") ;
+		String result = simpleDateFormat.format(new Date()) ;
+		System.out.println(result);
+
+		Calendar calendar = Calendar.getInstance() ;
+		int today = calendar.get(Calendar.DAY_OF_WEEK) ;
+		int week = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) ;	// 一个月中第几周
+		System.out.println("today is " + today);
+		System.out.println("week is " + week);
+		calendar.add(Calendar.DAY_OF_WEEK_IN_MONTH, -1) ; // 上周的今天
+		System.out.println(calendar.getTime());
+		week = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) ;
+		System.out.println("week is " + week);
 	}
 
 //	@Override

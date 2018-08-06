@@ -87,5 +87,6 @@ public class ObserverModeDemo {
 		System.out.println("即将移除订阅者");
 		broadCast.removeObserver(consumer1) ;
 		broadCast.notifyAllObservers();
+
 	}
 }
